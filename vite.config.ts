@@ -2,6 +2,8 @@ import path from 'path';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 const createDevMediaProxyPlugin = (): Plugin => ({
   name: 'dev-media-proxy',
   configureServer(server) {
@@ -84,7 +86,7 @@ export default defineConfig(({ mode }) => {
         port: 3000,
         host: '0.0.0.0',
       },
-      plugins: [react(), createDevMediaProxyPlugin()],
+      plugins: [react(), createDevMediaProxyPlugin(), cloudflare()],
       define: {
         'process.env.API_KEY': JSON.stringify(env.ANTSK_API_KEY),
         'process.env.ANTSK_API_KEY': JSON.stringify(env.ANTSK_API_KEY)
