@@ -529,7 +529,7 @@ export const BUILTIN_AUDIO_MODELS: AudioModelDefinition[] = [
 export const BUILTIN_PROVIDERS: ModelProvider[] = [
   {
     id: 'antsk',
-    name: 'BigBanana API (api.antsk.cn)',
+    name: '慕安世界 API (api.antsk.cn)',
     baseUrl: 'https://api.antsk.cn',
     isBuiltIn: true,
     isDefault: true,

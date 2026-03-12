@@ -8,7 +8,7 @@
 ### 1. **App.tsx** ✅
 - 将 "Google Gemini API Key" 改为 "AntSK API Key"
 - 更新文档链接指向 https://api.antsk.cn
-- 将 localStorage key 从 `bigbanana_api_key` 改为 `antsk_api_key`
+- 将 localStorage key 从 `suk_api_key` 改为 `antsk_api_key`
 - 更新提示文本，移除 Gemini 特定要求
 
 ### 2. **services/geminiService.ts** ✅ (完全重写)

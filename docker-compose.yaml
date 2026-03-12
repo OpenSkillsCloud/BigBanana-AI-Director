@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: bigbanana-web
+    container_name: suk-web
     ports:
       - "3005:80"
     depends_on:
@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.media-proxy
-    container_name: bigbanana-media-proxy
+    container_name: suk-media-proxy
     environment:
       MEDIA_PROXY_PORT: "8787"
       MEDIA_PROXY_ALLOWED_HOSTS: "volces.com"

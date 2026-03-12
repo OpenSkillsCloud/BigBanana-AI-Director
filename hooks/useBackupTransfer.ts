@@ -53,13 +53,13 @@ export const EPISODE_BACKUP_TRANSFER_MESSAGES: BackupTransferMessages = {
   exportSuccess: '当前剧集已导出，备份文件已下载。',
 };
 
-export const globalBackupFileName = (timestamp: string) => `bigbanana_backup_${timestamp}.json`;
+export const globalBackupFileName = (timestamp: string) => `suk_backup_${timestamp}.json`;
 
 export const projectBackupFileName = (projectId: string, timestamp: string) =>
-  `bigbanana_project_${projectId}_${timestamp}.json`;
+  `suk_project_${projectId}_${timestamp}.json`;
 
 export const episodeBackupFileName = (episodeId: string, timestamp: string) =>
-  `bigbanana_episode_${episodeId}_${timestamp}.json`;
+  `suk_episode_${episodeId}_${timestamp}.json`;
 
 const resolveMessages = (messages?: BackupTransferMessages): ResolvedBackupTransferMessages => ({
   ...DEFAULT_BACKUP_TRANSFER_MESSAGES,

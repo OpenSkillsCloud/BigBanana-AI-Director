@@ -256,7 +256,7 @@ http://localhost:3000/seo-check.html
 
 ## 🎊 总结
 
-本次 SEO 优化为 **BigBanana AI Director** 建立了完整的搜索引擎优化体系，包括：
+本次 SEO 优化为 **慕安世界** 建立了完整的搜索引擎优化体系，包括：
 
 1. ✅ **技术基础**：完整的 Meta 标签和结构化数据
 2. ✅ **社交优化**：支持所有主流社交平台
@@ -274,7 +274,7 @@ http://localhost:3000/seo-check.html
 - 📖 [完整文档目录](./docs/)
 - 🔧 [SEO 检查工具](/seo-check.html)
 - 🌐 [官方网站](https://tree456.com)
-- 🍌 [产品首页](https://bigbanana.tree456.com)
+- 🍌 [产品首页](https://suk.tree456.com)
 
 ---
 

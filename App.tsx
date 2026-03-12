@@ -9,7 +9,7 @@ import StagePrompts from './components/StagePrompts';
 import Dashboard from './components/Dashboard';
 import ProjectOverview from './components/ProjectOverview';
 import CharacterLibraryPage from './components/CharacterLibrary';
-import Onboarding, { shouldShowOnboarding, resetOnboarding } from './components/Onboarding';
+// Onboarding removed
 import ModelConfigModal from './components/ModelConfig';
 import { ProjectState } from './types';
 import { Save, CheckCircle } from 'lucide-react';
@@ -20,6 +20,8 @@ import { useAlert } from './components/GlobalAlert';
 import { ProjectProvider, useProjectContext } from './contexts/ProjectContext';
 import { checkCharacterSync, checkSceneSync, checkPropSync } from './services/characterSyncService';
 import AssetSyncBanner from './components/CharacterLibrary/AssetSyncBanner';
+import AuthPage from './components/Auth/AuthPage';
+import { getSession, login, register, logout, seedDemoAccount, UserAccount } from './services/authService';
 import logoImg from './logo.png';
 
 const isNineGridGenerating = (status?: string): boolean =>
@@ -78,7 +80,7 @@ function MobileWarning() {
     <div className="h-screen bg-[var(--bg-base)] flex items-center justify-center p-6">
       <div className="max-w-md text-center space-y-6">
         <img src={logoImg} alt="Logo" className="w-20 h-20 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">BigBanana AI Director</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">慕安世界</h1>
         <div className="bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl p-8">
           <p className="text-[var(--text-tertiary)] text-base leading-relaxed mb-4">为了获得最佳体验，请使用 PC 端浏览器访问。</p>
           <p className="text-[var(--text-muted)] text-sm">本应用需要较大的屏幕空间和桌面级浏览器环境才能正常运行。</p>
@@ -105,7 +107,6 @@ function EpisodeWorkspace() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'saved' | 'saving' | 'unsaved'>('saved');
   const [showSaveStatus, setShowSaveStatus] = useState(false);
-  const [showOnboarding, setShowOnboarding] = useState(false);
   const [showModelConfig, setShowModelConfig] = useState(false);
   const saveTimeoutRef = useRef<any>(null);
   const hideStatusTimeoutRef = useRef<any>(null);
@@ -251,7 +252,6 @@ function EpisodeWorkspace() {
         setStage={setStage}
         onExit={handleExit}
         projectName={episodeLabel}
-        onShowOnboarding={() => { resetOnboarding(); setShowOnboarding(true); }}
         onShowModelConfig={() => setShowModelConfig(true)}
         isNavigationLocked={isGenerating}
         episodeInfo={project ? { projectId: project.id, projectTitle: project.title, episodeTitle: displayEpisodeTitle } : undefined}
@@ -293,7 +293,6 @@ function EpisodeWorkspace() {
           </div>
         )}
       </main>
-      {showOnboarding && <Onboarding onComplete={() => setShowOnboarding(false)} onQuickStart={() => setShowOnboarding(false)} currentApiKey="" onSaveApiKey={() => {}} />}
       <ModelConfigModal isOpen={showModelConfig} onClose={() => setShowModelConfig(false)} />
     </div>
   );
@@ -301,14 +300,12 @@ function EpisodeWorkspace() {
 
 function AppRoutes() {
   const navigate = useNavigate();
-  const [showOnboarding, setShowOnboarding] = useState(false);
   const [showModelConfig, setShowModelConfig] = useState(false);
   const [apiKey, setApiKeyState] = useState('');
 
   useEffect(() => {
     const storedKey = localStorage.getItem('antsk_api_key');
     if (storedKey) { setApiKeyState(storedKey); setGlobalApiKey(storedKey); }
-    if (shouldShowOnboarding()) setShowOnboarding(true);
   }, []);
 
   useEffect(() => {
@@ -341,7 +338,6 @@ function AppRoutes() {
               if (proj.projectId) navigate(`/project/${proj.projectId}`);
               else navigate(`/project/${proj.id}/episode/${proj.id}`);
             }}
-            onShowOnboarding={() => { resetOnboarding(); setShowOnboarding(true); }}
             onShowModelConfig={() => setShowModelConfig(true)}
           />
         } />
@@ -361,7 +357,6 @@ function AppRoutes() {
           </ProjectProvider>
         } />
       </Routes>
-      {showOnboarding && <Onboarding onComplete={() => setShowOnboarding(false)} onQuickStart={() => setShowOnboarding(false)} currentApiKey={apiKey} onSaveApiKey={handleSaveApiKey} />}
       <ModelConfigModal isOpen={showModelConfig} onClose={() => setShowModelConfig(false)} />
     </>
   );
@@ -369,6 +364,9 @@ function AppRoutes() {
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
+  const [user, setUser] = useState<UserAccount | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [authError, setAuthError] = useState('');
 
   useEffect(() => {
     const check = () => setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024);
@@ -377,7 +375,57 @@ function App() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  // Seed demo account & check existing session on mount
+  useEffect(() => {
+    seedDemoAccount().finally(() => {
+      const session = getSession();
+      if (session) setUser(session);
+      setAuthChecked(true);
+    });
+  }, []);
+
+  const handleLogin = async (email: string, password: string) => {
+    try {
+      const u = await login(email, password);
+      setUser(u);
+      setAuthError('');
+    } catch (err) {
+      setAuthError(err instanceof Error ? err.message : '登录失败');
+      throw err;
+    }
+  };
+
+  const handleRegister = async (email: string, password: string, nickname: string) => {
+    try {
+      const u = await register(email, password, nickname);
+      setUser(u);
+      setAuthError('');
+    } catch (err) {
+      setAuthError(err instanceof Error ? err.message : '注册失败');
+      throw err;
+    }
+  };
+
   if (isMobile) return <MobileWarning />;
+
+  // Show loading while checking auth
+  if (!authChecked) {
+    return <div className="h-screen bg-black flex items-center justify-center"><div className="text-zinc-600 text-sm">加载中...</div></div>;
+  }
+
+  // Show auth page if not logged in
+  if (!user) {
+    return (
+      <AuthPage
+        onLogin={() => {}}
+        onLoginSubmit={handleLogin}
+        onRegister={handleRegister}
+        error={authError}
+        clearError={() => setAuthError('')}
+      />
+    );
+  }
+
   return <AppRoutes />;
 }
 

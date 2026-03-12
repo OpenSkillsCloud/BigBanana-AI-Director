@@ -4,7 +4,7 @@
 2025-12-18
 
 ## 优化目标
-为 BigBanana AI Director 首页增加全面的 SEO 优化，提升搜索引擎排名和社交媒体分享效果。
+为 慕安世界 首页增加全面的 SEO 优化，提升搜索引擎排名和社交媒体分享效果。
 
 ---
 
@@ -42,14 +42,14 @@
 
 ```html
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://bigbanana.tree456.com/" />
-<meta property="og:title" content="BigBanana AI Director - 工业级 AI 漫剧与视频生成工作台" />
+<meta property="og:url" content="https://suk.tree456.com/" />
+<meta property="og:title" content="慕安世界 - 工业级 AI 漫剧与视频生成工作台" />
 <meta property="og:description" content="专为 AI 漫剧、动态漫画及影视分镜设计的专业生产力工具..." />
-<meta property="og:image" content="https://bigbanana.tree456.com/UI.png" />
+<meta property="og:image" content="https://suk.tree456.com/UI.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:locale" content="zh_CN" />
-<meta property="og:site_name" content="BigBanana AI Director" />
+<meta property="og:site_name" content="慕安世界" />
 ```
 
 **优势：**
@@ -65,10 +65,10 @@
 
 ```html
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content="https://bigbanana.tree456.com/" />
-<meta name="twitter:title" content="BigBanana AI Director - 工业级 AI 漫剧与视频生成工作台" />
+<meta name="twitter:url" content="https://suk.tree456.com/" />
+<meta name="twitter:title" content="慕安世界 - 工业级 AI 漫剧与视频生成工作台" />
 <meta name="twitter:description" content="专为 AI 漫剧、动态漫画及影视分镜设计的专业生产力工具..." />
-<meta name="twitter:image" content="https://bigbanana.tree456.com/UI.png" />
+<meta name="twitter:image" content="https://suk.tree456.com/UI.png" />
 ```
 
 **优势：**
@@ -85,7 +85,7 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "BigBanana AI Director",
+  "name": "慕安世界",
   "applicationCategory": "MultimediaApplication",
   "operatingSystem": "Web Browser",
   "description": "工业级 AI 漫剧与视频生成工作台...",
@@ -101,7 +101,7 @@
   },
   "creator": {
     "@type": "Organization",
-    "name": "BigBanana Team",
+    "name": "慕安世界",
     "url": "https://tree456.com"
   },
   "featureList": [
@@ -140,7 +140,7 @@ Disallow: /api/
 Disallow: /node_modules/
 Disallow: /*.json$
 
-Sitemap: https://bigbanana.tree456.com/sitemap.xml
+Sitemap: https://suk.tree456.com/sitemap.xml
 ```
 
 **功能：**
@@ -273,7 +273,7 @@ Sitemap: https://bigbanana.tree456.com/sitemap.xml
 ### 5. Google Search Console
 1. 登录 Google Search Console
 2. 添加网站
-3. 提交 sitemap: `https://bigbanana.tree456.com/sitemap.xml`
+3. 提交 sitemap: `https://suk.tree456.com/sitemap.xml`
 4. 请求索引
 
 ---
@@ -316,7 +316,7 @@ Sitemap: https://bigbanana.tree456.com/sitemap.xml
 
 如需进一步的 SEO 优化或有疑问，请联系：
 - 官网：https://tree456.com
-- 产品页：https://bigbanana.tree456.com
+- 产品页：https://suk.tree456.com
 
 ---
 
