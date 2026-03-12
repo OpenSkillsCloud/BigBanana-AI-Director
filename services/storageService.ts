@@ -3,7 +3,7 @@ import { runV2ToV3Migration, runEpisodeTitleFixMigration } from './migrationServ
 import { materializeProjectVideosForExport, migrateProjectVideosToOPFS } from './videoStorageService';
 import { sanitizePromptTemplateOverrides } from './promptTemplateService';
 
-const DB_NAME = 'BigBananaDB';
+const DB_NAME = 'SUKDB';
 const DB_VERSION = 3;
 const STORE_NAME = 'projects';
 const ASSET_STORE_NAME = 'assetLibrary';

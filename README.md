@@ -1,4 +1,4 @@
-# BigBanana AI Director (AI 漫剧工场)
+# 慕安世界 (AI 漫剧工场)
 
 > **AI 一站式短剧/漫剧生成平台**
 > *Industrial AI Motion Comic & Video Workbench*
@@ -8,7 +8,7 @@
 [![日本語](https://img.shields.io/badge/Language-日本語-gray.svg)](./README_JA.md)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-**BigBanana AI Director** 是一个 **AI 一站式短剧/漫剧平台**，面向创作者,实现从灵感到成片的高效生产。
+**慕安世界** 是一个 **AI 一站式短剧/漫剧平台**，面向创作者,实现从灵感到成片的高效生产。
 
 它摇弃了传统的"抽卡式"生成，采用 **"Script-to-Asset-to-Keyframe"** 的工业化工作流。通过深度集成 AntSK API 的先进 AI 模型，实现 **"一句话生成完整短剧，从剧本到成片全自动化"**，同时精准控制角色一致性、场景连续性与镜头运动。
 
@@ -39,7 +39,7 @@
 
 ## 核心理念：关键帧驱动 (Keyframe-Driven)
 
-传统的 Text-to-Video 往往难以控制具体的运镜和起止画面。BigBanana 引入了动画制作中的 **关键帧 (Keyframe)** 概念：
+传统的 Text-to-Video 往往难以控制具体的运镜和起止画面。SUK 引入了动画制作中的 **关键帧 (Keyframe)** 概念：
 1.  **先画后动**：先生成精准的起始帧 (Start) 和结束帧 (End)。
 2.  **插值生成**：利用 Veo 模型在两帧之间生成平滑的视频过渡。
 3.  **资产约束**：所有画面生成均受到“角色定妆照”和“场景概念图”的强约束，杜绝人物变形。
@@ -123,28 +123,17 @@
 
 ---
 
-## 💬 加入交流群
-
-扫码加入【大香蕉】产品体验群，与其他创作者交流经验、获取最新功能更新：
-
-<div align="center">
-<img src="./images/qrcode.jpg" width="300" alt="微信群二维码">
-<p><i>微信扫码加入交流群</i></p>
-</div>
-
----
-
 ### 🎨 轻量级创作工具推荐
 
 如果你需要**快速完成单次创作任务**，可以试试我们的在线工具平台：
 
-**[BigBanana 创作工坊](https://bigbanana.tree456.com/)** 提供：
-* 📷 **[AI 绘图](https://bigbanana.tree456.com/gemini-image.html)**：文字转图片，支持多种风格
-* 📊 **[AI PPT](https://bigbanana.tree456.com/ppt-content.html)**：一键生成演示文稿
-* 🎬 **[AI 视频](https://bigbanana.tree456.com/ai-video-content.html)**：智能视频内容生成
-* 📱 **[小红书文案](https://bigbanana.tree456.com/redink-content.html)**：爆款标题和内容生成
-* 📖 **[AI 小说创作](https://bigbanana.tree456.com/novel-creation.html)**：智能小说生成与续写
-* 🎨 **[AI 动漫生成](https://bigbanana.tree456.com/anime-content.html)**：动漫风格图片创作
+**[SUK 创作工坊](https://suk.tree456.com/)** 提供：
+* 📷 **[AI 绘图](https://suk.tree456.com/gemini-image.html)**：文字转图片，支持多种风格
+* 📊 **[AI PPT](https://suk.tree456.com/ppt-content.html)**：一键生成演示文稿
+* 🎬 **[AI 视频](https://suk.tree456.com/ai-video-content.html)**：智能视频内容生成
+* 📱 **[小红书文案](https://suk.tree456.com/redink-content.html)**：爆款标题和内容生成
+* 📖 **[AI 小说创作](https://suk.tree456.com/novel-creation.html)**：智能小说生成与续写
+* 🎨 **[AI 动漫生成](https://suk.tree456.com/anime-content.html)**：动漫风格图片创作
 * 🎭 **无需安装**：浏览器直接使用，即开即用
 
 **适合场景**：日常创作、快速原型、灵感验证  
@@ -154,7 +143,7 @@
 
 直接下载安装包，开箱即用，无需配置开发环境：
 
-**[📥 下载 BigBanana AI Director 客户端 (Windows)](https://tree456.oss-cn-beijing.aliyuncs.com/BigBanana%20AI%20Director%20Setup%201.0.0.exe?Expires=1770908400&OSSAccessKeyId=TMP.3KofXPaUNdnvbUpRP5MqiRmMMxuGwiftTgQfn7U3ntRtFvMYHpMB2kPb17r7rPXksvo7DFncrz4dWSfs3K33wVgGXfnCy4&Signature=wiOZbN%2BcZNuyZdiEI3KR1CqkFhM%3D)**
+**[📥 下载 慕安世界 客户端 (Windows)](https://tree456.oss-cn-beijing.aliyuncs.com/SUK%20AI%20Director%20Setup%201.0.0.exe?Expires=1770908400&OSSAccessKeyId=TMP.3KofXPaUNdnvbUpRP5MqiRmMMxuGwiftTgQfn7U3ntRtFvMYHpMB2kPb17r7rPXksvo7DFncrz4dWSfs3K33wVgGXfnCy4&Signature=wiOZbN%2BcZNuyZdiEI3KR1CqkFhM%3D)**
 
 > 💡 下载后双击安装即可使用，支持 Windows 系统。
 
@@ -166,8 +155,8 @@
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
+git clone https://github.com/shuyu-labs/SUK-AI-Director.git
+cd SUK-AI-Director
 
 # 2. 安装依赖
 npm install
@@ -183,8 +172,8 @@ npm run dev
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
+git clone https://github.com/shuyu-labs/SUK-AI-Director.git
+cd SUK-AI-Director
 
 # 2. 使用 Docker Compose 构建并启动
 docker-compose up -d --build
@@ -203,23 +192,23 @@ docker-compose down
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/shuyu-labs/BigBanana-AI-Director.git
-cd BigBanana-AI-Director
+git clone https://github.com/shuyu-labs/SUK-AI-Director.git
+cd SUK-AI-Director
 
 # 2. 构建镜像
-docker build -t bigbanana-ai .
+docker build -t suk-ai .
 
 # 3. 运行容器
-docker run -d -p 3005:80 --name bigbanana-ai-app bigbanana-ai
+docker run -d -p 3005:80 --name suk-ai-app suk-ai
 
 # 4. 访问应用
 # 浏览器打开 http://localhost:3005
 
 # 查看日志
-docker logs -f bigbanana-ai-app
+docker logs -f suk-ai-app
 
 # 停止容器
-docker stop bigbanana-ai-app
+docker stop suk-ai-app
 ```
 
 ### 其他命令
@@ -267,4 +256,4 @@ docker-compose up -d --force-recreate
 
 ---
 
-*Built for Creators, by BigBanana.*
+*Built for Creators, by SUK.*

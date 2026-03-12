@@ -1,22 +1,21 @@
 import React from 'react';
-import { FileText, Users, Clapperboard, Film, ChevronLeft, ListTree, HelpCircle, Cpu, Sun, Moon, Loader2, FolderOpen, BookOpen, Globe, Palette } from 'lucide-react';
+import { FileText, Users, Clapperboard, Film, ChevronLeft, ListTree, Cpu, Sun, Moon, Loader2, FolderOpen } from 'lucide-react';
 import logoImg from '../logo.png';
 import { useTheme } from '../contexts/ThemeContext';
-import { USER_MANUAL_URL, OFFICIAL_WEBSITE_URL, CREATIVE_HOME_URL, COPYRIGHT_TEXT } from '../constants/links';
+import { COPYRIGHT_TEXT } from '../constants/links';
 
 interface SidebarProps {
   currentStage: string;
   setStage: (stage: 'script' | 'assets' | 'director' | 'export' | 'prompts') => void;
   onExit: () => void;
   projectName?: string;
-  onShowOnboarding?: () => void;
   onShowModelConfig?: () => void;
   isNavigationLocked?: boolean;
   episodeInfo?: { projectId: string; projectTitle: string; episodeTitle: string };
   onGoToProject?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ currentStage, setStage, onExit, projectName, onShowOnboarding, onShowModelConfig, isNavigationLocked, episodeInfo, onGoToProject }) => {
+const Sidebar: React.FC<SidebarProps> = ({ currentStage, setStage, onExit, projectName, onShowModelConfig, isNavigationLocked, episodeInfo, onGoToProject }) => {
   const { theme, toggleTheme } = useTheme();
   const navItems = [
     { id: 'script', label: '剧本与故事', icon: FileText, sub: '阶段 01' },
@@ -32,7 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentStage, setStage, onExit, proje
         <a href="https://tree456.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 mb-6 group cursor-pointer">
           <img src={logoImg} alt="Logo" className="w-8 h-8 flex-shrink-0 transition-transform group-hover:scale-110" />
           <div className="overflow-hidden">
-            <h1 className="text-sm font-bold text-[var(--text-primary)] tracking-wider group-hover:text-[var(--text-secondary)] transition-colors">BigBanana</h1>
+            <h1 className="text-sm font-bold text-[var(--text-primary)] tracking-wider group-hover:text-[var(--text-secondary)] transition-colors">慕安世界</h1>
             <p className="text-[10px] text-[var(--text-tertiary)] tracking-widest group-hover:text-[var(--text-secondary)] transition-colors">专业版</p>
           </div>
         </a>
@@ -102,44 +101,14 @@ const Sidebar: React.FC<SidebarProps> = ({ currentStage, setStage, onExit, proje
           <span className="font-mono text-[10px] uppercase tracking-widest">{theme === 'dark' ? '亮色主题' : '暗色主题'}</span>
           {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
         </button>
-        {onShowOnboarding && (
-          <button onClick={onShowOnboarding} className="w-full flex items-center justify-between text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer transition-colors">
-            <span className="font-mono text-[10px] uppercase tracking-widest">新手引导</span>
-            <HelpCircle className="w-4 h-4" />
-          </button>
-        )}
-        <a
-          href={USER_MANUAL_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="w-full flex items-center justify-between text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-widest">使用手册</span>
-          <BookOpen className="w-4 h-4" />
-        </a>
+
         {onShowModelConfig && (
           <button onClick={onShowModelConfig} className="w-full flex items-center justify-between text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer transition-colors">
             <span className="font-mono text-[10px] uppercase tracking-widest">模型配置</span>
             <Cpu className="w-4 h-4" />
           </button>
         )}
-        <div className="flex gap-3 pt-2">
-          <a href={OFFICIAL_WEBSITE_URL} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors"
-            title="树语智能官网"
-          >
-            <Globe className="w-3.5 h-3.5" />
-            <span className="font-mono text-[10px] tracking-wide">官网</span>
-          </a>
-          <span className="text-[var(--border-secondary)]">|</span>
-          <a href={CREATIVE_HOME_URL} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors"
-            title="BigBanana 创作主页"
-          >
-            <Palette className="w-3.5 h-3.5" />
-            <span className="font-mono text-[10px] tracking-wide">创作主页</span>
-          </a>
-        </div>
+
         <div className="text-[9px] text-[var(--text-muted)] font-mono tracking-wide opacity-60 pt-1">
           {COPYRIGHT_TEXT}
         </div>

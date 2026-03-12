@@ -1,4 +1,4 @@
-# BigBanana AI Director - Robots.txt
+# \u6155\u5b89\u4e16\u754c - Robots.txt
 # https://director.tree456.com/robots.txt
 
 User-agent: *

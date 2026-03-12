@@ -47,7 +47,7 @@
 ## 📁 文件位置
 
 ```
-BigBanana-AI-Director/
+SUK-AI-Director/
 ├── index.html              # 主页（已添加 SEO 标签）
 ├── public/
 │   ├── robots.txt         # 爬虫规则
@@ -147,7 +147,7 @@ A: 修改 `index.html` 后需要刷新浏览器（Ctrl+F5 强制刷新）。
 
 - 查看详细报告: `docs/SEO优化报告.md`
 - 官网: https://tree456.com
-- 产品页: https://bigbanana.tree456.com
+- 产品页: https://suk.tree456.com
 
 ---
 

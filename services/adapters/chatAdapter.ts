@@ -174,43 +174,75 @@ export const callChatApi = async (
 
 /**
  * 验证 API Key
+ * Strategy: try GET /v1/models first (zero cost, no model dependency),
+ * fall back to POST /v1/chat/completions only if /v1/models returns 404.
  */
 export const verifyApiKey = async (apiKey: string, baseUrl?: string): Promise<{ success: boolean; message: string }> => {
   try {
-    const url = baseUrl || 'https://api.antsk.cn';
-    
-    const response = await fetch(`${url}/v1/chat/completions`, {
+    const url = (baseUrl || 'https://api.antsk.cn').replace(/\/+$/, '');
+
+    // --- Attempt 1: GET /v1/models (zero cost, no model needed) ---
+    const modelsRes = await fetch(`${url}/v1/models`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${apiKey}` },
+    });
+
+    if (modelsRes.ok) {
+      return { success: true, message: 'API Key 验证成功' };
+    }
+
+    // 401/403 = invalid key
+    if (modelsRes.status === 401 || modelsRes.status === 403) {
+      let serverMsg = '';
+      try {
+        const body = await modelsRes.json();
+        serverMsg = body.error?.message || '';
+      } catch { /* ignore */ }
+      const hint = serverMsg.includes('无效') || serverMsg.includes('invalid')
+        ? '\n请确认使用的是 API 令牌（sk-开头），而非「系统访问令牌」。\n前往 api.antsk.cn → 控制台 → 令牌管理 获取正确的令牌。'
+        : '';
+      return { success: false, message: `${serverMsg || `验证失败 (HTTP ${modelsRes.status})`}${hint}` };
+    }
+
+    // --- Attempt 2: POST chat completions (fallback when /v1/models 404s) ---
+    // Use a generic model name; the specific model doesn't matter for auth check
+    const chatRes = await fetch(`${url}/v1/chat/completions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'gpt-41',
-        messages: [{ role: 'user', content: '仅返回1' }],
+        model: 'gpt-4o-mini',
+        messages: [{ role: 'user', content: 'Return 1 only.' }],
         temperature: 0.1,
         max_tokens: 5,
       }),
     });
 
-    if (!response.ok) {
-      let errorMessage = `验证失败: ${response.status}`;
+    if (!chatRes.ok) {
+      let errorMessage = `验证失败 (HTTP ${chatRes.status})`;
       try {
-        const errorData = await response.json();
+        const errorData = await chatRes.json();
         errorMessage = errorData.error?.message || errorMessage;
-      } catch (e) {
-        // ignore
+      } catch { /* ignore */ }
+      // If it's a 403 "no access to model" that still means the KEY is valid
+      if (chatRes.status === 403 && errorMessage.includes('no access to model')) {
+        return { success: true, message: 'API Key 验证成功（令牌有效，部分模型可能需要单独授权）' };
       }
-      return { success: false, message: errorMessage };
+      const hint = chatRes.status === 401
+        ? '\n请确认使用的是 API 令牌（sk-开头）。前往 api.antsk.cn → 控制台 → 令牌管理 获取。'
+        : '';
+      return { success: false, message: errorMessage + hint };
     }
 
-    const data = await response.json();
+    const data = await chatRes.json();
     if (data.choices?.[0]?.message?.content !== undefined) {
       return { success: true, message: 'API Key 验证成功' };
-    } else {
-      return { success: false, message: '返回格式异常' };
     }
+
+    return { success: false, message: '返回格式异常' };
   } catch (error: any) {
-    return { success: false, message: error.message || '网络错误' };
+    return { success: false, message: error.message || '网络错误，请检查网络连接后重试' };
   }
 };

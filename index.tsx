@@ -12,20 +12,19 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { AlertProvider } from './components/GlobalAlert';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { OFFICIAL_WEBSITE_URL, CREATIVE_HOME_URL, APP_VERSION, COMPANY_NAME } from './constants/links';
+import { OFFICIAL_WEBSITE_URL, APP_VERSION, COMPANY_NAME } from './constants/links';
 
 console.log(
-  `%c BigBanana AI Director v${APP_VERSION} %c\n` +
+  `%c 慕安世界 v${APP_VERSION} %c\n` +
   `%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━%c\n` +
   `  🎬 AI 漫剧生成平台\n` +
   `  🏠 官网: ${OFFICIAL_WEBSITE_URL}\n` +
-  `  🎨 创作主页: ${CREATIVE_HOME_URL}\n` +
   `  © ${new Date().getFullYear()} ${COMPANY_NAME}\n` +
   `%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━%c`,
-  'background: #818cf8; color: #fff; font-size: 14px; font-weight: bold; padding: 4px 12px; border-radius: 4px;',
+  'background: #7c3aed; color: #fff; font-size: 14px; font-weight: bold; padding: 4px 12px; border-radius: 4px;',
   '',
-  'color: #818cf8;', '',
-  'color: #818cf8;', ''
+  'color: #7c3aed;', '',
+  'color: #7c3aed;', ''
 );
 
 const rootElement = document.getElementById('root');
